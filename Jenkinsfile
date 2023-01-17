@@ -4,37 +4,13 @@ pipeline {
         maven 'Maven_Home' 
         jdk 'Java_Home' 
            }
-    environment{
-//      BRANCH_NAME = 'main'
-//        echo GIT_BRANCH %GIT_BRANCH%
-//        BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
-//        echo $BRANCH_NAME
- //       echo 'Pulling... ' + env.GIT_BRANCH
- //   FULL_PATH_BRANCH = "${sh(script:'git name-rev --name-only HEAD', returnStdout: true)}"
-  //  GIT_BRANCH = FULL_PATH_BRANCH.substring(FULL_PATH_BRANCH.lastIndexOf('/') + 1, FULL_PATH_BRANCH.length())
-        def branch_nem = scm.branches[0].name
-if (branch_nem.contains("*/")) {
-    branch_nem = branch_nem.split("\\*/")[1]
-    }
-echo branch_nem
-  }
-
-    }
 stages {
       stage('GIT checkout') {
            steps {
-               script{
-                if (env.BRANCH_NAME == 'main') {
-                echo 'Hello from main branch'
                 git branch: 'main', url: 'https://github.com/ijazclouddev/CI-CD-Pipeline-with-Jenkins-deploy-tomcat'
-                }
-               else {
-            sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
-                  git branch: 'dev', url: 'https://github.com/ijazclouddev/CI-CD-Pipeline-with-Jenkins-deploy-tomcat' 
+               
                }
-               }
-          }
-        }
+               
        stage('Compile') {
            steps {
                sh 'mvn clean test package'
