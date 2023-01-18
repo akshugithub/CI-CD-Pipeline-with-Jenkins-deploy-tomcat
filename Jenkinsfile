@@ -10,6 +10,7 @@ stages {
                 git branch: 'main', url: 'https://github.com/akshugithub/CI-CD-Pipeline-with-Jenkins-deploy-tomcat.git'
                
                }
+      }
                
        stage('Compile') {
            steps {
