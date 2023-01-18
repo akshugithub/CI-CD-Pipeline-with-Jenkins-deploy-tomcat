@@ -22,6 +22,13 @@ stage('Build') {
            steps {
                sh 'mvn clean install'
            }
-}           
+}         
+    stage('Build') {
+           steps {
+               sshagent(['deploy-user']) {
+    // some block
+}
+   } 
+ }
   }
 }
