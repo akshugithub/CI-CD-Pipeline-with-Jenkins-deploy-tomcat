@@ -25,9 +25,7 @@ stage('Build') {
 }         
     stage('deploy') {
            steps {
-               sshagent(['deploy-user']) {
-    sh "scp -o StrictHostKeyChecking=no target/hello-world-maven.war ec2-user@3.109.122.94:/opt/tomcat/webapps"
-}
+               sshagent(['deploy-user']) 
    } 
  }
   }
